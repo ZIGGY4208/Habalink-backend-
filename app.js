@@ -11,7 +11,6 @@ console.log("📦 Initializing Express App...");
 const app = express();
 
 app.use(helmet());
-import cors from "cors";
 
 const allowedOrigins = [
   "http://localhost:5173",
