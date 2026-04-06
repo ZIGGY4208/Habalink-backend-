@@ -217,7 +217,14 @@ export const resendRegistrationOTP = async (req, res, next) => {
 
     await otpRecord.save();
 
-    await sendRegistrationOTPEmail(email, otp);
+    try {
+      await sendRegistrationOTPEmail(email, otp);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to send OTP email",
+      });
+    }
 
     res.json({
       success: true,

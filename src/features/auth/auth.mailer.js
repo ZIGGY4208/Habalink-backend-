@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 // ============================
 export const sendRegistrationOTPEmail = async (email, otp) => {
   try {
-    console.log("📧 Sending registration OTP email...");
+    console.log("📧 Sending registration OTP email to:", email);
 
     await transporter.sendMail({
       from: `"Habalink Support" <${process.env.EMAIL_USER}>`,
@@ -51,10 +51,11 @@ export const sendRegistrationOTPEmail = async (email, otp) => {
     });
 
     console.log("✅ Registration OTP email sent");
-
   } catch (error) {
-    console.log("❌ Registration email failed:");
-    console.log(error);
+    console.error("❌ Registration email failed:", error);
+
+    // 🚨 THIS IS THE FIX
+    throw error;
   }
 };
 
