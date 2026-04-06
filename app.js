@@ -11,9 +11,14 @@ console.log("📦 Initializing Express App...");
 const app = express();
 
 app.use(helmet());
+import cors from "cors";
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://rental-property-ase4-git-44e36f-austinpc280-gmailcoms-projects.vercel.app",
+    ],
     credentials: true,
   }),
 );
